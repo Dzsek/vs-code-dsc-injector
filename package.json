@@ -1,6 +1,6 @@
 {
   "name": "dcs-lua-injector",
-  "displayName": "dcs-lua-injector",
+  "displayName": "DCS Lua Injector",
   "description": "Runs lua code in the DCS mission environment",
   "publisher": "Dzsekeb",
   "version": "1.0.0",
