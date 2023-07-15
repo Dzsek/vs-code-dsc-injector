@@ -10,6 +10,7 @@
   "categories": [
     "Other"
   ],
+  "keywords": ["DCS","Lua","SSE","Mission"],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
