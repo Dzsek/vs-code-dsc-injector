@@ -5,7 +5,7 @@ This VSCode extension lets you run lua code and code snippets inside Digital Com
 
 ## Installation
 
-For this extension to work you will need to copy the DCS-Lua-Injector.lua script into your `C:\Users\<username>\Saved Games\DCS.openbeta\Scripts\Hooks` folder.
+For this extension to work you will need to copy the [DCS-Lua-Injector.lua](https://github.com/Dzsek/vs-code-dsc-injector/blob/main/DCS/DCS-Lua-Injector.lua) script into your `C:\Users\<username>\Saved Games\DCS.openbeta\Scripts\Hooks` folder.
 Create the folder if it does not exist.
 
 ## Usage
