@@ -18,9 +18,9 @@ The keybinding can be changed in the `File->Preferences->Keyboard Shortcuts` men
 
 (search for `@command:dcs-lua-injector.runSelection`, or `Run selected lua code in DCS`)
 
-### DCS extension menu
+### DCS Snippets view
 
-This can be found on the activities bar on the left.
+This can be found under the Explorer section of VS Code.
 
 It shows you a collection of lua snippets found in the current workspace, and lets you run them with a single click.
 

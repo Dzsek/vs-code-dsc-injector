@@ -77,6 +77,8 @@ export function activate(context: vscode.ExtensionContext) {
 	
 	vscode.commands.registerCommand('dcs-lua-injector.refreshScriptsList', () => injectableScriptProvider.refresh());
 	
+	vscode.workspace.onDidSaveTextDocument(()=> vscode.commands.executeCommand('dcs-lua-injector.refreshScriptsList'));
+
 	vscode.commands.registerCommand('dcs-lua-injector.executeScript', async function(injectable){
 		vscode.window.showInformationMessage('DCS Lua injector: Sending');
 		await sendScript(injectable.code).then(()=>{

@@ -36,20 +36,11 @@
         "key": "alt+d"
       }
     ],
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "dcs-script-injector",
-          "title": "DCS Script Injector",
-          "icon": "icon.png"
-        }
-      ]
-    },
     "views": {
-      "dcs-script-injector": [
+      "explorer": [
         {
           "id": "dcs-injector-scripts-list",
-          "name": "Scripts"
+          "name": "DCS Snippets"
         }
       ]
     },
