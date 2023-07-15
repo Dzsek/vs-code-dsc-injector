@@ -1,24 +1,37 @@
 {
   "name": "dcs-lua-injector",
   "displayName": "dcs-lua-injector",
-  "description": "Runs lua code in the mission environment",
-  "version": "0.0.1",
+  "description": "Runs lua code in the DCS mission environment",
+  "publisher": "Dzsekeb",
+  "version": "1.0.0",
   "engines": {
-    "vscode": "^1.52.0"
+    "vscode": "^1.80.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [],
-  "main": "./extension.js",
+  "main": "./out/extension.js",
   "contributes": {
-    "commands": [{
-      "command": "dcs-lua-injector.run",
-      "title": "Run lua code in DCS"
-    }],
+    "commands": [
+      {
+      "command": "dcs-lua-injector.runSelection",
+      "title": "Run selected lua code in DCS"
+      },
+      {
+      "command": "dcs-lua-injector.refreshScriptsList",
+      "title": "Refresh scripts list",
+      "icon": "$(extensions-refresh)"
+      },
+      {
+      "command": "dcs-lua-injector.executeScript",
+      "title": "Execute script",
+      "icon": "$(play)"
+      }
+    ],
     "keybindings":[
       {
-        "command": "dcs-lua-injector.run",
+        "command": "dcs-lua-injector.runSelection",
         "key": "alt+d"
       }
     ],
@@ -34,26 +47,47 @@
     "views": {
       "dcs-script-injector": [
         {
-          "id": "dcs-injector-scripts",
+          "id": "dcs-injector-scripts-list",
           "name": "Scripts"
         }
       ]
-    }
+    },
+    "menus": {
+      "view/title": [
+          {
+              "command": "dcs-lua-injector.refreshScriptsList",
+              "when": "view == dcs-injector-scripts-list",
+              "group": "navigation"
+          }
+      ],
+      "view/item/context": [
+        {
+            "command": "dcs-lua-injector.executeScript",
+            "when": "viewItem == injectable",
+            "group": "inline"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "dcs-injector-scripts-list",
+        "contents": "To define a snippet in any .lua file:\n--#inject:name\n <your-code-here>\n--#end",
+        "when": "true"
+      }
+    ]
   },
   "scripts": {
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "node ./test/runTest.js"
+		"vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
+		"watch": "tsc -watch -p ./"
   },
   "devDependencies": {
     "@types/vscode": "^1.80.0",
-    "@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.1",
     "@types/node": "20.2.5",
     "eslint": "^8.41.0",
-    "glob": "^8.1.0",
-    "mocha": "^10.2.0",
     "typescript": "^5.1.3",
-    "@vscode/test-electron": "^2.3.2"
+		"@typescript-eslint/eslint-plugin": "^5.42.0",
+		"@typescript-eslint/parser": "^5.42.0"
   }
 }

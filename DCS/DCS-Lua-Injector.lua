@@ -33,7 +33,13 @@ local function step()
         if data.type == 'lua' then
             local inject = "a_do_script([["..data.script.."]])"
             local result, success = net.dostring_in('mission', inject)
-            log.write("Lua-Injector", log.INFO, tostring(result))
+            if not result or #result==0 then
+                log.write("Lua-Injector", log.INFO, 'Script executed')
+                client:send(JSON:encode({type='receipt', status='OK'}))
+            else
+                log.write("Lua-Injector", log.INFO, 'Script error: '..tostring(result))
+                client:send(JSON:encode({type='receipt', status='ERROR'}))
+            end
         end
     end
 end
