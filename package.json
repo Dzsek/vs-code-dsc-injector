@@ -4,6 +4,10 @@
   "description": "Runs lua code in the DCS mission environment",
   "publisher": "Dzsekeb",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dzsek/vs-code-dsc-injector.git"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
