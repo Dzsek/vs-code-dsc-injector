@@ -21,9 +21,13 @@ async function sendScript(code:string){
 	const config = vscode.workspace.getConfiguration('dcsLuaInjector')
 	const host = config.get('host', '127.0.0.1')
 	const port = config.get('port', 18080)
+	const password = config.get('password', 'default')
 
 	var client = new net.Socket();
 	client.connect(port, host, async function() {
+
+		client.write(password+'\n');
+
 		const data = {
 			"type":"lua",
 			"script": code

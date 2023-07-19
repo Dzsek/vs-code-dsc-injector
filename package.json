@@ -92,7 +92,12 @@
         "dcsLuaInjector.port": {
           "type": "number",
           "default": 18080,
-          "description": "Port on which DCS-Lua-Injector.lua is listening."
+          "description": "Port on which DCS-Lua-Injector.lua is listening. Serverside it can be set in the DCS-Lua-Injector.lua file. (DCS needs to be restarted)"
+        },
+        "dcsLuaInjector.password": {
+          "type": "string",
+          "default": "default",
+          "description": "Password for basic security. Serverside it can be set in the DCS-Lua-Injector.lua file. (DCS needs to be restarted)"
         }
       }
     }

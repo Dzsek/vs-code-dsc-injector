@@ -28,8 +28,10 @@ local socket = require("socket")
 
 luaInjector = {}
 
+
 luaInjector.host = "*"
 luaInjector.port = 18080
+luaInjector.password = 'default'
 
 luaInjector.server = socket.bind(luaInjector.host, luaInjector.port)
 luaInjector.server:settimeout(.0001)
@@ -44,18 +46,25 @@ local function step()
     local client = luaInjector.server:accept()
     if client then
         client:settimeout(.0001)
-        local line = client:receive()
-        local data = JSON:decode(line)
-        if data.type == 'lua' then
-            local inject = "a_do_script([["..data.script.."]])"
-            local result, success = net.dostring_in('mission', inject)
-            if not result or #result==0 then
-                log.write("Lua-Injector", log.INFO, 'Script executed')
-                client:send(JSON:encode({type='receipt', status='OK'}))
-            else
-                log.write("Lua-Injector", log.INFO, 'Script error: '..tostring(result))
-                client:send(JSON:encode({type='receipt', status='ERROR'}))
+        local passw = client:receive()
+        local package = client:receive()
+        if passw == luaInjector.password then
+            log.write("Lua-Injector", log.INFO, 'Request from '..tostring(client:getpeername()))
+            local data = JSON:decode(package)
+            if data.type == 'lua' then
+                local inject = "a_do_script([["..data.script.."]])"
+                local result, success = net.dostring_in('mission', inject)
+                if not result or #result==0 then
+                    log.write("Lua-Injector", log.INFO, 'Script executed')
+                    client:send(JSON:encode({type='receipt', status='OK'}))
+                else
+                    log.write("Lua-Injector", log.INFO, 'Script error: '..tostring(result))
+                    client:send(JSON:encode({type='receipt', status='ERROR'}))
+                end
             end
+        else
+            log.write("Lua-Injector", log.INFO, 'Invalid password from '..tostring(client:getpeername()))
+            client:send(JSON:encode({type='receipt', status='ERROR'}))
         end
     end
 end

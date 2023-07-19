@@ -37,3 +37,14 @@ The snippet name must consist of alpha-numeric characters.
 
 You can have multiple snippets in a single file. Each snippet is considered to be from an `--#inject:name` line to the next `--#end` line.
 
+### Settings
+
+Connection IP and port can be configured on the VS Code settings page, in case this needs to be run over the network.
+
+There is also some basic security available by changing the default password.
+
+On DCS side the port and password can be configured by editing the DCS-Lua-Injector.lua file and changing the following values:
+```lua
+luaInjector.port = 18080
+luaInjector.password = 'default'
+```
