@@ -3,7 +3,7 @@
   "displayName": "DCS Lua Injector",
   "description": "Runs lua code in the DCS mission environment",
   "publisher": "Dzsekeb",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Dzsek/vs-code-dsc-injector.git"
@@ -29,6 +29,11 @@
       "icon": "$(extensions-refresh)"
       },
       {
+      "command": "dcs-lua-injector.openSettings",
+      "title": "Configure host and port",
+      "icon": "$(settings-view-bar-icon)"
+      },
+      {
       "command": "dcs-lua-injector.executeScript",
       "title": "Execute script",
       "icon": "$(play)"
@@ -50,17 +55,22 @@
     },
     "menus": {
       "view/title": [
-          {
-              "command": "dcs-lua-injector.refreshScriptsList",
-              "when": "view == dcs-injector-scripts-list",
-              "group": "navigation"
-          }
+        {
+            "command": "dcs-lua-injector.refreshScriptsList",
+            "when": "view == dcs-injector-scripts-list",
+            "group": "navigation"
+        },
+        {
+          "command": "dcs-lua-injector.openSettings",
+          "when": "view == dcs-injector-scripts-list",
+          "group": "navigation"
+        }
       ],
       "view/item/context": [
         {
-            "command": "dcs-lua-injector.executeScript",
-            "when": "viewItem == injectable",
-            "group": "inline"
+          "command": "dcs-lua-injector.executeScript",
+          "when": "viewItem == injectable",
+          "group": "inline"
         }
       ]
     },
@@ -70,7 +80,22 @@
         "contents": "To define a snippet in any .lua file:\n--#inject:name\n <your-code-here>\n--#end",
         "when": "true"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "DCS Lua Injector",
+      "properties": {
+        "dcsLuaInjector.host": {
+          "type": "string",
+          "default": "127.0.0.1",
+          "description": "IP address where DCS is running."
+        },
+        "dcsLuaInjector.port": {
+          "type": "number",
+          "default": 18080,
+          "description": "Port on which DCS-Lua-Injector.lua is listening."
+        }
+      }
+    }
   },
   "scripts": {
 		"vscode:prepublish": "npm run compile",

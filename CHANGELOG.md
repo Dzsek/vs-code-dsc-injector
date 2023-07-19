@@ -1,9 +1,10 @@
 # Change Log
 
-All notable changes to the "dcs-lua-injector" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
+## [1.0]
 
 - Initial release
+
+## [1.1]
+
+- Added ability to customize host and port in settings
+- Updated DCS side hook script to bind to all ip instead of just lookback to allow for connecting from outside

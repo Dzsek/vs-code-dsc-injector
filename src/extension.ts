@@ -18,8 +18,12 @@ async function sendScript(code:string){
 		rejectOut = reject;
 	});
 
+	const config = vscode.workspace.getConfiguration('dcsLuaInjector')
+	const host = config.get('host', '127.0.0.1')
+	const port = config.get('port', 18080)
+
 	var client = new net.Socket();
-	client.connect(18080, '127.0.0.1', async function() {
+	client.connect(port, host, async function() {
 		const data = {
 			"type":"lua",
 			"script": code
@@ -114,5 +118,9 @@ export function activate(context: vscode.ExtensionContext) {
 				editor.selection = selection
 			}
 		});
+	});
+
+	vscode.commands.registerCommand('dcs-lua-injector.openSettings', function(){
+		vscode.commands.executeCommand( 'workbench.action.openSettings', 'dcsLuaInjector' );
 	});
 }

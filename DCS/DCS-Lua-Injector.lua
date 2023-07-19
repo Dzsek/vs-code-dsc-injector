@@ -28,7 +28,7 @@ local socket = require("socket")
 
 luaInjector = {}
 
-luaInjector.host = "localhost"
+luaInjector.host = "*"
 luaInjector.port = 18080
 
 luaInjector.server = socket.bind(luaInjector.host, luaInjector.port)
