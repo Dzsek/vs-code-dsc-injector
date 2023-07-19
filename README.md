@@ -2,6 +2,7 @@
 
 This VSCode extension lets you run lua code and code snippets inside Digital Combat Simulators mission environment.
 
+If you like my work, feel free to [buy me a beer](https://www.buymeacoffee.com/dzsek).
 
 ## Installation
 
