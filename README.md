@@ -2,8 +2,6 @@
 
 This VSCode extension lets you run lua code and code snippets inside Digital Combat Simulators mission environment.
 
-If you like my work, feel free to [buy me a beer](https://www.buymeacoffee.com/dzsek).
-
 ## Installation
 
 For this extension to work you will need to copy the [DCS-Lua-Injector.lua](https://github.com/Dzsek/vs-code-dsc-injector/blob/main/DCS/DCS-Lua-Injector.lua) script into your `C:\Users\<username>\Saved Games\DCS.openbeta\Scripts\Hooks` folder.
